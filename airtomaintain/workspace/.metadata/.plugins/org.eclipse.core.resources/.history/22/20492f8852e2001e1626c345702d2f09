@@ -1,0 +1,5 @@
+package com.airtomaintain.maintenance.service;
+
+public interface IPartsService {
+
+}
