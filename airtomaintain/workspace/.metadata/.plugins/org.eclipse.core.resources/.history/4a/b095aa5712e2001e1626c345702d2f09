@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS `Parts` (
+`parts_id` int auto_increment primary key,
+`parts_name` varchar(100) not null,
+`parts_number` varchar(100) not null,
+`parts_mfn` varchar(100) not null,
+`parts_qty` int not null
+);
+
+create table if not exists `Tools` (
+`tools_id` int auto_increment primary key,
+`tools_name` varchar(100) not null,
+`tools_number` varchar(100) not null,
+`tools_mfn` varchar(100) not null,
+`tools_qty` int not null
+)

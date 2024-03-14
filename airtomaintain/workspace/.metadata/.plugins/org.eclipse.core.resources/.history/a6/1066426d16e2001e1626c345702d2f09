@@ -1,0 +1,15 @@
+package com.airtomaintain.maintenance.entity;
+
+public class Tools extends BaseEntity{
+	
+	private long toolsId;
+	
+	private String toolsName;
+	
+	private String toolsNumber;
+	
+	private String toolsMfn;
+	
+	private int toolsQty;
+
+}
