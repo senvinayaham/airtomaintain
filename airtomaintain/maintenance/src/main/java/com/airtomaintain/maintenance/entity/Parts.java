@@ -17,13 +17,13 @@ import lombok.ToString;
 @Getter @Setter @ToString @AllArgsConstructor @NoArgsConstructor
 public class Parts extends BaseEntity{
 	
-	@Id
+	@Id	
 	@GeneratedValue(strategy=GenerationType.AUTO,generator="native")
 	@GenericGenerator(name="native", strategy="native")
 	@Column(name="parts_id")
 	private Long partsId;
 	
-	@Column(name="part_oem")
+	@Column(name="parts_oem")
 	private int partsOem;
 	
 	@Column(name="parts_name")

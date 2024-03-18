@@ -13,4 +13,10 @@ public interface IPartsService {
 	 *
 	 */
 	void createParts(PartsDto partsDto);
+	
+	/**
+	 * @param String - partsNumber
+	 * @return PartsDto - PartsDto Object
+	 */
+	PartsDto fetchParts(String partsNumber);
 }

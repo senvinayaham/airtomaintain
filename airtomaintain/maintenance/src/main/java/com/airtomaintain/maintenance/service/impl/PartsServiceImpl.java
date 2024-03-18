@@ -3,10 +3,18 @@
  */
 package com.airtomaintain.maintenance.service.impl;
 
+import java.time.LocalDateTime;
+import java.util.Optional;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.airtomaintain.maintenance.dto.PartsDto;
 import com.airtomaintain.maintenance.entity.Parts;
+import com.airtomaintain.maintenance.exception.PartsAlreadyExistsException;
+import com.airtomaintain.maintenance.exception.ResourceNotFoundException;
 import com.airtomaintain.maintenance.mapper.PartsMapper;
 import com.airtomaintain.maintenance.repository.PartsRepository;
 import com.airtomaintain.maintenance.repository.ToolsRepository;
@@ -34,7 +42,23 @@ public class PartsServiceImpl implements IPartsService{
 		// TODO Auto-generated method stub
 		
 		Parts parts = PartsMapper.mapToParts(new Parts(), partsDto);
+		Optional<Parts> optionalParts = partsReporsitory.findByPartsNumber(partsDto.getPartsNumber());
+		if (optionalParts.isPresent())
+			throw new PartsAlreadyExistsException("Given Parts:" + partsDto.getPartsNumber()+ " already exist in the System with Qty:"+partsDto.getPartsQty());
+		parts.setCreatedAt(LocalDateTime.now());
+		parts.setCreatedBy("Anonymous");
 		partsReporsitory.save(parts);
+	}
+
+	@Override
+	public PartsDto fetchParts(String partsNumber) {
+		// TODO Auto-generated method stub
+		
+		Parts parts = partsReporsitory.findByPartsNumber(partsNumber).orElseThrow(
+				() -> new ResourceNotFoundException("Parts", "PartsNumber", partsNumber)
+				);
+				
+		return PartsMapper.mapToPartsDto(new PartsDto(), parts);
 	}
 
 	
