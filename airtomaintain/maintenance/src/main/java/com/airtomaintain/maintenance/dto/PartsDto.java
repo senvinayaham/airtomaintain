@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class PartsDto {
 	
-	private int partOem;
+	private int partsOem;
 	
 	private String partsName;
 	

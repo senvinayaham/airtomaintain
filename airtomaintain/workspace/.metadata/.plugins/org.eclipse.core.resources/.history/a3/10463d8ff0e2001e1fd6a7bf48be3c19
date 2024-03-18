@@ -1,0 +1,48 @@
+/**
+ * 
+ */
+package com.airtomaintain.maintenance.mapper;
+
+import com.airtomaintain.maintenance.dto.PartsDto;
+import com.airtomaintain.maintenance.dto.ToolsDto;
+import com.airtomaintain.maintenance.entity.Parts;
+import com.airtomaintain.maintenance.entity.Tools;
+
+/**
+ * @author senthilvinayahammurugan
+ *
+ */
+public class ToolsMapper {
+	
+	public static ToolsDto mapToPartsDto(ToolsDto toolsDto, Tools tools) {
+		
+		toolsDto.setPartOem(tools.getPartOem());
+		
+		toolsDto.setPartsMfn(tools.getPartsMfn());
+		
+		toolsDto.setPartsName(tools.getPartsName());
+		
+		toolsDto.setPartsNumber(tools.getPartsNumber());
+		
+		toolsDto.setPartsQty(tools.getPartsQty());
+
+		return toolsDto;
+		
+	}
+	
+	public static Parts mapToParts(ToolsDto toolsDto, Tools tools) {
+		
+		tools.setPartOem(toolsDto.getPartOem());
+		
+		tools.setPartsMfn(toolsDto.getPartsMfn());
+		
+		tools.setPartsName(toolsDto.getPartsName());
+		
+		tools.setPartsNumber(toolsDto.getPartsNumber());
+		
+		tools.setPartsQty(toolsDto.getPartsQty());
+		
+		return tools;
+		
+	}
+}

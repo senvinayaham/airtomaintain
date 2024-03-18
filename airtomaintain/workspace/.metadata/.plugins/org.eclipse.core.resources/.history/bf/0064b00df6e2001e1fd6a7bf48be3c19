@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package com.airtomaintain.maintenance.exception;
+
+/**
+ * @author senthilvinayahammurugan
+ *
+ */
+public class PartsAlreadyExistsException extends RuntimeException{
+
+}

@@ -1,0 +1,24 @@
+/**
+ * 
+ */
+package com.airtomaintain.maintenance.mapper;
+
+import com.airtomaintain.maintenance.dto.PartsDto;
+import com.airtomaintain.maintenance.entity.Parts;
+
+/**
+ * @author senthilvinayahammurugan
+ *
+ */
+public class ToolsMapper {
+	
+	public static PartsDto mapToPartsDto(PartsDto partsDto, Parts parts) {
+		
+		partsDto.set
+		
+	}
+	
+	public static Parts mapToParts(Parts parts, PartsDto partsDto) {
+		
+	}
+}

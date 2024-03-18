@@ -1,0 +1,16 @@
+package com.airtomaintain.maintenance.service;
+
+import com.airtomaintain.maintenance.dto.PartsDto;
+
+/**
+ * @author senthilvinayahammurugan
+ *
+ */
+public interface IPartsService {
+
+	/**
+	 * @param PartsDto
+	 *
+	 */
+	void createParts(PartsDto partsDto);
+}

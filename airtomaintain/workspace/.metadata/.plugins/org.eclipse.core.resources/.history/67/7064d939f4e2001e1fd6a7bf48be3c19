@@ -1,0 +1,43 @@
+/**
+ * 
+ */
+package com.airtomaintain.maintenance.service.impl;
+
+import org.springframework.stereotype.Service;
+
+import com.airtomaintain.maintenance.dto.PartsDto;
+import com.airtomaintain.maintenance.entity.Parts;
+import com.airtomaintain.maintenance.mapper.PartsMapper;
+import com.airtomaintain.maintenance.repository.PartsRepository;
+import com.airtomaintain.maintenance.repository.ToolsRepository;
+import com.airtomaintain.maintenance.service.IPartsService;
+
+import lombok.AllArgsConstructor;
+
+/**
+ * @author senthilvinayahammurugan
+ *
+ */
+@Service
+@AllArgsConstructor
+public class PartsServiceImpl implements IPartsService{
+
+	
+	/**
+	 * Autowiring
+	 */
+	
+	private PartsRepository partsReporsitory;
+	
+	private ToolsRepository toolsRepository;
+	
+	@Override
+	public void createParts(PartsDto partsDto) {
+		// TODO Auto-generated method stub
+		
+		Parts parts = PartsMapper.mapToParts(new Parts(), partsDto);
+		partsReporsitory.save(parts);
+	}
+
+	
+}

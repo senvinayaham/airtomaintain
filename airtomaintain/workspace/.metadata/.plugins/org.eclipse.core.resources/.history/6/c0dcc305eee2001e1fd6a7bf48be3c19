@@ -1,0 +1,27 @@
+/**
+ * 
+ */
+package com.airtomaintain.maintenance.mapper;
+
+/**
+ * @author senthilvinayahammurugan
+ *
+ */
+public class ToolsMapper {
+	
+	public static PartsDto mapToPartsDto(PartsDto partsDto, Parts parts) {
+		
+		
+		
+		return partDto;
+		
+	}
+	
+	public static Parts mapToParts(Parts parts, PartsDto partsDto) {
+		
+		
+		
+		return parts;
+		
+	}
+}

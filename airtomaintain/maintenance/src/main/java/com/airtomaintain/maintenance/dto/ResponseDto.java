@@ -3,7 +3,12 @@ package com.airtomaintain.maintenance.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-@Data @AllArgsConstructor
+/**
+ * @author senthilvinayahammurugan
+ *
+ */
+@Data 
+@AllArgsConstructor
 public class ResponseDto {
 
 	private String statusCode;

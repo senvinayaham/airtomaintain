@@ -24,7 +24,7 @@ public class Parts extends BaseEntity{
 	private Long partsId;
 	
 	@Column(name="part_oem")
-	private int partOem;
+	private int partsOem;
 	
 	@Column(name="parts_name")
 	private String partsName;

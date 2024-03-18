@@ -7,6 +7,10 @@ import org.springframework.http.HttpStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+/**
+ * @author senthilvinayahammurugan
+ *
+ */
 @Data @AllArgsConstructor
 public class ErrorResponseDto {
 
