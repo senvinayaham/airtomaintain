@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package com.airtomaintain.maintenance.audit;
+
+/**
+ * @author senthilvinayahammurugan
+ *
+ */
+public class AuditAwareImpl {
+
+}

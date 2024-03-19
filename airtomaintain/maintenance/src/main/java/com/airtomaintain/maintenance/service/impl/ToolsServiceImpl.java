@@ -45,8 +45,6 @@ public class ToolsServiceImpl implements IToolsService{
 		Optional<Tools> optionalTools = toolsRepository.findByToolsNumber(tools.getToolsNumber());
 		if(optionalTools.isPresent())
 			throw new ToolsAlreadyExistsException("Given Tool number" +tools.getToolsNumber()+ " already exists with the Qty"+ tools.getToolsQty());
-		tools.setCreatedAt(LocalDateTime.now());
-		tools.setCreatedBy("Anonymous");
 		toolsRepository.save(tools);
 	}
 	

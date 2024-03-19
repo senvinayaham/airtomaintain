@@ -45,8 +45,6 @@ public class PartsServiceImpl implements IPartsService{
 		Optional<Parts> optionalParts = partsRepository.findByPartsNumber(partsDto.getPartsNumber());
 		if (optionalParts.isPresent())
 			throw new PartsAlreadyExistsException("Given Parts:" + partsDto.getPartsNumber()+ " already exist in the System with Qty:"+partsDto.getPartsQty());
-		parts.setCreatedAt(LocalDateTime.now());
-		parts.setCreatedBy("Anonymous");
 		partsRepository.save(parts);
 	}
 
