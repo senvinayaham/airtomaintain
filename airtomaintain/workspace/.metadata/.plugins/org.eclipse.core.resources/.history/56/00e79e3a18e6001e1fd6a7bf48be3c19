@@ -1,0 +1,81 @@
+/**
+ * 
+ */
+package com.airtomaintain.maintenance.service.impl;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.airtomaintain.maintenance.dto.PartsDto;
+import com.airtomaintain.maintenance.entity.Parts;
+import com.airtomaintain.maintenance.exception.PartsAlreadyExistsException;
+import com.airtomaintain.maintenance.exception.ResourceNotFoundException;
+import com.airtomaintain.maintenance.mapper.PartsMapper;
+import com.airtomaintain.maintenance.repository.PartsRepository;
+import com.airtomaintain.maintenance.repository.ToolsRepository;
+import com.airtomaintain.maintenance.service.IPartsService;
+
+import lombok.AllArgsConstructor;
+
+/**
+ * @author senthilvinayahammurugan
+ *
+ */
+@Service
+@AllArgsConstructor
+public class PartsServiceImpl implements IPartsService{
+
+	
+	/**
+	 * Autowiring
+	 */
+	
+	private PartsRepository partsRepository;
+	
+	@Override
+	public void createParts(PartsDto partsDto) {
+		// TODO Auto-generated method stub
+		
+		Parts parts = PartsMapper.mapToParts(new Parts(), partsDto);
+		Optional<Parts> optionalParts = partsRepository.findByPartsNumber(partsDto.getPartsNumber());
+		if (optionalParts.isPresent())
+			throw new PartsAlreadyExistsException("Given Parts:" + partsDto.getPartsNumber()+ " already exist in the System with Qty:"+partsDto.getPartsQty());
+		parts.setCreatedAt(LocalDateTime.now());
+		parts.setCreatedBy("Anonymous");
+		partsRepository.save(parts);
+	}
+
+	@Override
+	public PartsDto fetchParts(String partsNumber) {
+		// TODO Auto-generated method stub
+		
+		Parts parts = partsRepository.findByPartsNumber(partsNumber).orElseThrow(
+				() -> new ResourceNotFoundException("Parts", "PartsNumber", partsNumber)
+				);
+				
+		return PartsMapper.mapToPartsDto(new PartsDto(), parts);
+	}
+
+	@Override
+	public boolean updateParts(PartsDto partsDto) {
+		// TODO Auto-generated method stub
+		boolean isUpdated = false;
+		if (partsDto!=null) {
+		
+			Parts parts = partsRepository.findByPartsNumber(partsDto.getPartsNumber()).orElseThrow(
+					() -> new ResourceNotFoundException("Parts", "PartsNumber", partsDto.getPartsNumber())
+					);
+			PartsMapper.mapToParts(parts, partsDto);
+			partsRepository.save(parts);
+			isUpdated = true;
+		}
+		return isUpdated;
+	}
+
+	
+}

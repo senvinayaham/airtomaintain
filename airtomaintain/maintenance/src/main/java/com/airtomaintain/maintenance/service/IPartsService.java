@@ -19,4 +19,17 @@ public interface IPartsService {
 	 * @return PartsDto - PartsDto Object
 	 */
 	PartsDto fetchParts(String partsNumber);
+
+	/**
+	 * @param PartsDto - partsDto
+	 * @return boolean - True/False based on the update status
+	 */
+	boolean updateParts(PartsDto partsDto);
+
+	/**
+	 * @param String - partsNumber
+	 * @return boolean - True/False based on the update status
+	 */
+	boolean deleteParts(String partsNumber);
+
 }

@@ -3,8 +3,10 @@ package com.airtomaintain.maintenance.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -72,5 +74,60 @@ public class MaintenanceController {
 				.status(HttpStatus.OK)
 				.body(toolsDto);
 		
+	}
+	@PutMapping("/update_parts")
+	public ResponseEntity<ResponseDto> updateParts(@RequestBody PartsDto partsDto){
+		
+		boolean isUpdated = iPartsService.updateParts(partsDto);
+		if(isUpdated) {
+			return ResponseEntity.status(HttpStatus.OK)
+					.body(new ResponseDto(PartsConstants.MESSAGE_200, PartsConstants.STATUS_200));
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.body(new ResponseDto(PartsConstants.MESSAGE_500, PartsConstants.STATUS_500));
+
+	}
+	
+	
+	@PutMapping("/update_tools")
+	public ResponseEntity<ResponseDto> updateTools(@RequestBody ToolsDto toolsDto){
+		
+		
+		boolean isUpdated = iToolsService.updateTools(toolsDto);
+		if(isUpdated) {
+			return ResponseEntity.status(HttpStatus.OK)
+					.body(new ResponseDto(ToolsConstants.MESSAGE_200, ToolsConstants.STATUS_200));
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.body(new ResponseDto(ToolsConstants.MESSAGE_500, ToolsConstants.STATUS_500));
+
+	}
+	
+	@DeleteMapping("/delete_part")
+	public ResponseEntity<ResponseDto> deletePart(@RequestParam String partsNumber){
+		
+		boolean isDeleted = iPartsService.deleteParts(partsNumber);
+		if(isDeleted) {
+			
+			return ResponseEntity.status(HttpStatus.OK)
+					.body(new ResponseDto(PartsConstants.MESSAGE_200, PartsConstants.STATUS_200));
+		}
+		
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.body(new ResponseDto(PartsConstants.MESSAGE_500, PartsConstants.STATUS_500));
+	}
+	
+	@DeleteMapping("/delete_tool")
+	public ResponseEntity<ResponseDto> deleteTool(@RequestParam String toolsNumber){
+		
+		boolean isDeleted = iToolsService.deleteTools(toolsNumber);
+		if(isDeleted) {
+			
+			return ResponseEntity.status(HttpStatus.OK)
+					.body(new ResponseDto(ToolsConstants.MESSAGE_200, ToolsConstants.STATUS_200));
+		}
+		
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.body(new ResponseDto (ToolsConstants.MESSAGE_500, ToolsConstants.STATUS_500));
 	}
 }

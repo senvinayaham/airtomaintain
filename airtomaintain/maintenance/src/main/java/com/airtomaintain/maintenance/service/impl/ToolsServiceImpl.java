@@ -61,4 +61,33 @@ public class ToolsServiceImpl implements IToolsService{
 		return ToolsMapper.mapToToolsDto(new ToolsDto(), tools);
 	}
 
+	@Override
+	public boolean updateTools(ToolsDto toolsDto) {
+		// TODO Auto-generated method stub
+		boolean isUpdated = false;
+		if (toolsDto!=null) {
+		
+			Tools tools = toolsRepository.findByToolsNumber(toolsDto.getToolsNumber()).orElseThrow(
+					() -> new ResourceNotFoundException("Tools", "ToolsNumber", toolsDto.getToolsNumber())
+					);
+			ToolsMapper.mapToTools(toolsDto, tools);
+			toolsRepository.save(tools);
+		isUpdated = true;
+		}
+		return isUpdated;
+	}
+
+	@Override
+	public boolean deleteTools(String toolsNumber) {
+		// TODO Auto-generated method stub
+
+		Tools tools = toolsRepository.findByToolsNumber(toolsNumber).orElseThrow(
+				() -> new ResourceNotFoundException("Tools", "ToolsNumber", toolsNumber)
+				);
+		toolsRepository.deleteByToolsNumber(toolsNumber);
+		
+		
+		return true;
+	}
+
 }

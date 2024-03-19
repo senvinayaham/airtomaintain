@@ -35,30 +35,58 @@ public class PartsServiceImpl implements IPartsService{
 	 * Autowiring
 	 */
 	
-	private PartsRepository partsReporsitory;
+	private PartsRepository partsRepository;
 	
 	@Override
 	public void createParts(PartsDto partsDto) {
 		// TODO Auto-generated method stub
 		
 		Parts parts = PartsMapper.mapToParts(new Parts(), partsDto);
-		Optional<Parts> optionalParts = partsReporsitory.findByPartsNumber(partsDto.getPartsNumber());
+		Optional<Parts> optionalParts = partsRepository.findByPartsNumber(partsDto.getPartsNumber());
 		if (optionalParts.isPresent())
 			throw new PartsAlreadyExistsException("Given Parts:" + partsDto.getPartsNumber()+ " already exist in the System with Qty:"+partsDto.getPartsQty());
 		parts.setCreatedAt(LocalDateTime.now());
 		parts.setCreatedBy("Anonymous");
-		partsReporsitory.save(parts);
+		partsRepository.save(parts);
 	}
 
 	@Override
 	public PartsDto fetchParts(String partsNumber) {
 		// TODO Auto-generated method stub
 		
-		Parts parts = partsReporsitory.findByPartsNumber(partsNumber).orElseThrow(
+		Parts parts = partsRepository.findByPartsNumber(partsNumber).orElseThrow(
 				() -> new ResourceNotFoundException("Parts", "PartsNumber", partsNumber)
 				);
 				
 		return PartsMapper.mapToPartsDto(new PartsDto(), parts);
+	}
+
+	@Override
+	public boolean updateParts(PartsDto partsDto) {
+		// TODO Auto-generated method stub
+		boolean isUpdated = false;
+		if (partsDto!=null) {
+		
+			Parts parts = partsRepository.findByPartsNumber(partsDto.getPartsNumber()).orElseThrow(
+					() -> new ResourceNotFoundException("Parts", "PartsNumber", partsDto.getPartsNumber())
+					);
+			PartsMapper.mapToParts(parts, partsDto);
+			partsRepository.save(parts);
+			isUpdated = true;
+		}
+		return isUpdated;
+	}
+
+	@Override
+	public boolean deleteParts(String partsNumber) {
+		// TODO Auto-generated method stub
+
+		Parts parts = partsRepository.findByPartsNumber(partsNumber).orElseThrow(
+				() -> new ResourceNotFoundException("Parts", "PartsNumber", partsNumber)
+				);
+		partsRepository.deleteByPartsNumber(parts.getPartsNumber());
+		
+		return true;
 	}
 
 	

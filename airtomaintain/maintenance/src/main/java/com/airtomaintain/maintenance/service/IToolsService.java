@@ -20,4 +20,16 @@ public interface IToolsService {
 	 */
 	ToolsDto fetchTools(String toolsNumber);
 
+	/**
+	 * @param ToolsDto - toolsDto
+	 * @return boolean - True/False based on the update status
+	 */
+	boolean updateTools(ToolsDto toolsDto);
+
+	/**
+	 * @param String - toolsNumber
+	 * @return boolean - True/False based on the update status
+	 */
+	boolean deleteTools(String toolsNumber);
+
 }
