@@ -2,7 +2,10 @@ package com.airtomaintain.maintenance;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
+import com.airtomaintain.maintenance.dto.PartsAndToolsContactInfo;
 
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
@@ -19,6 +22,7 @@ import io.swagger.v3.oas.annotations.info.License;
  */
 
 @EnableJpaAuditing(auditorAwareRef="auditAwareImpl")
+@EnableConfigurationProperties(value= {PartsAndToolsContactInfo.class})
 @OpenAPIDefinition(
 		info = @Info( 
 		

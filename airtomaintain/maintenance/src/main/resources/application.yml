@@ -14,3 +14,23 @@ spring:
       hibernate:
          ddl-auto: update
       show-sql: true
+   config:
+      import:
+         - "application_qa.yml"
+         - "application_prod.yml"
+   profiles:
+      active:
+         - "qa"         
+               
+build:
+   version: "3.0"
+   
+   
+partsandtools:
+   message: "Contact Details for Parts and Tools Team for any support issues"
+   contactDetails:
+      name: "SenthilVinayaham"
+      email: "senthilvinayaham@gmail.com"
+   onCallSupport:
+      (777) 111-2222
+      (888) 333-4444

@@ -1,5 +1,8 @@
 package com.airtomaintain.maintenance.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.airtomaintain.maintenance.constants.PartsConstants;
 import com.airtomaintain.maintenance.constants.ToolsConstants;
 import com.airtomaintain.maintenance.dto.ErrorResponseDto;
+import com.airtomaintain.maintenance.dto.PartsAndToolsContactInfo;
 import com.airtomaintain.maintenance.dto.PartsDto;
 import com.airtomaintain.maintenance.dto.ResponseDto;
 import com.airtomaintain.maintenance.dto.ToolsDto;
@@ -42,12 +46,28 @@ import io.swagger.v3.oas.annotations.media.Schema;
 		)
 @RestController
 @RequestMapping(path="/api/v0", produces= {MediaType.APPLICATION_JSON_VALUE})
-@AllArgsConstructor
 @Validated
 public class MaintenanceController {
 
-	private IPartsService iPartsService;
-	private IToolsService iToolsService;
+	private final IPartsService iPartsService;
+	private final IToolsService iToolsService;
+	
+	
+	public MaintenanceController(IPartsService iPartsService, IToolsService iToolsService) {
+		
+		this.iPartsService = iPartsService;
+		this.iToolsService = iToolsService;
+		
+	}
+	
+	@Value("${build.version}")
+	private String buildVersion;
+	
+	@Autowired
+	private Environment environment;
+	
+	@Autowired
+	private PartsAndToolsContactInfo partsAndToolsContactInfo;
 	
 	@Operation (
 			
@@ -251,5 +271,48 @@ public class MaintenanceController {
 		
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 				.body(new ResponseDto (ToolsConstants.MESSAGE_500, ToolsConstants.STATUS_500));
+	}
+	
+	
+	@Operation (
+			
+			summary = "FETCH Build Information REST API",
+			description = "REST API to Fetch Build Information for Parts and Tools Service"
+			)
+	@GetMapping("/build-info")
+	public ResponseEntity<String> getBuildInfo(){
+		
+		return ResponseEntity
+				.status(HttpStatus.OK)
+				.body(buildVersion);
+		
+	}
+	
+	@Operation (
+			
+			summary = "FETCH Java Version",
+			description = "REST API to Fetch Java Version"
+			)
+	@GetMapping("/java-version")
+	public ResponseEntity<String> getJavaVersion(){
+		
+		return ResponseEntity
+				.status(HttpStatus.OK)
+				.body(environment.getProperty("JAVA_HOME"));
+		
+	}
+	
+	@Operation (
+			
+			summary = "FETCH Java Version",
+			description = "REST API to Fetch Java Version"
+			)
+	@GetMapping("/contact-info")
+	public ResponseEntity<PartsAndToolsContactInfo> getConstactInfo(){
+		
+		return ResponseEntity
+				.status(HttpStatus.OK)
+				.body(partsAndToolsContactInfo);
+		
 	}
 }
