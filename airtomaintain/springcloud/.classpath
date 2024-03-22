@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="src" path="maintenance-v1/src/main/java"/>
-	<classpathentry kind="src" path="maintenance-v1/src/test/java"/>
-	<classpathentry kind="lib" path="maintenance-v1/.mvn/wrapper/maven-wrapper.jar"/>
-	<classpathentry kind="lib" path="maintenance-v1/target/maintenance-0.0.1-SNAPSHOT.jar"/>
-	<classpathentry kind="output" path="maintenance-v1/target/classes"/>
-</classpath>
