@@ -1,0 +1,6 @@
+#Start with a base image containing java runtime
+FROM openjdk:17-jdk-slim
+
+MAINTAINER AirToMaintain
+
+COPY target/

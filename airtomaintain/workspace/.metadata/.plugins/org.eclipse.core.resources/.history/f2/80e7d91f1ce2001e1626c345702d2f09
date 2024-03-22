@@ -1,5 +1,0 @@
-package com.airtomaintain.maintenance.repository;
-
-public interface ToolsRepository {
-
-}

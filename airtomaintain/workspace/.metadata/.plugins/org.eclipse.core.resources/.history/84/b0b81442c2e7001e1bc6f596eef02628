@@ -1,0 +1,4 @@
+Services:
+   maintenance:
+      image: "senvinayaham/maintenance:PartsTools"
+      container-name: maintenance-ms

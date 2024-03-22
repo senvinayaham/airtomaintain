@@ -15,19 +15,31 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.airtomaintain.maintenance.constants.PartsConstants;
 import com.airtomaintain.maintenance.constants.ToolsConstants;
+import com.airtomaintain.maintenance.dto.ErrorResponseDto;
 import com.airtomaintain.maintenance.dto.PartsDto;
 import com.airtomaintain.maintenance.dto.ResponseDto;
 import com.airtomaintain.maintenance.dto.ToolsDto;
 import com.airtomaintain.maintenance.service.IPartsService;
 import com.airtomaintain.maintenance.service.IToolsService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
+import io.swagger.v3.oas.annotations.media.Schema;
 /**
  * @author senthilvinayahammurugan
  *
  */
+
+@Tag(
+		name = "CURS REST API for Parts and Tools in Aircraft Maintenance",
+		description = "CURD REST APIs in Aircraft Maintenance CREATE, FETCH, UPDATE AND DELETE Parts and Tools details"
+		)
 @RestController
 @RequestMapping(path="/api/v0", produces= {MediaType.APPLICATION_JSON_VALUE})
 @AllArgsConstructor
@@ -37,6 +49,25 @@ public class MaintenanceController {
 	private IPartsService iPartsService;
 	private IToolsService iToolsService;
 	
+	@Operation (
+			
+			summary = "CREATE Parts REST API",
+			description = "REST API to create Parts to maintain Aircrafts"
+			)
+	@ApiResponse (
+			
+			responseCode = "201",
+			description ="Parts Created Successfuly",			
+			content = @Content (
+					
+					schema = @Schema(
+							
+							implementation = ErrorResponseDto.class
+														
+							)
+					
+					)
+			)
 	@PostMapping("/create_parts")
 	public ResponseEntity<ResponseDto> createParts(@Valid @RequestBody PartsDto partsDto){
 		
@@ -47,6 +78,16 @@ public class MaintenanceController {
 		
 	}
 
+	@Operation (
+			
+			summary = "CREATE Tools REST API",
+			description = "REST API to create Tools to maintain Aircrafts"
+			)
+	@ApiResponse (
+			
+			responseCode = "201",
+			description ="Parts Created Successfuly"			
+			)
 	@PostMapping("/create_tools")
 	public ResponseEntity<ResponseDto> createTools(@Valid @RequestBody ToolsDto toolsDto){
 		
@@ -56,6 +97,12 @@ public class MaintenanceController {
 				.body(new ResponseDto(ToolsConstants.MESSAGE_201, ToolsConstants.STATUS_201));
 		
 	}
+	
+	@Operation (
+			
+			summary = "FETCH Parts REST API",
+			description = "REST API to Fetch Parts to maintain Aircrafts"
+			)
 	@GetMapping("/fetch_parts")
 	public ResponseEntity<PartsDto> fetchParts(@NotEmpty @RequestParam String partsNumber){
 		
@@ -67,6 +114,11 @@ public class MaintenanceController {
 		
 	}
 
+	@Operation (
+			
+			summary = "FETCH Tools REST API",
+			description = "REST API to Fetch Tools to maintain Aircrafts"
+			)
 	@GetMapping("/fetch_tools")
 	public ResponseEntity<
 	ToolsDto> fetchTools(@NotEmpty @RequestParam String toolsNumber){
@@ -77,6 +129,24 @@ public class MaintenanceController {
 				.body(toolsDto);
 		
 	}
+	
+	@Operation (
+			
+			summary = "UPDATE Parts REST API",
+			description = "REST API to Update Parts to maintain Aircrafts"
+			)
+	@ApiResponses ({
+		@ApiResponse (
+				
+				responseCode = "200",
+				description ="Parts Request Processed Successfully"			
+				),
+		@ApiResponse (
+				
+				responseCode = "500",
+				description ="An Error Occured"			
+				)
+	})
 	@PutMapping("/update_parts")
 	public ResponseEntity<ResponseDto> updateParts(@Valid @RequestBody PartsDto partsDto){
 		
@@ -90,7 +160,23 @@ public class MaintenanceController {
 
 	}
 	
-	
+	@Operation (
+			
+			summary = "UPDATE Tools REST API",
+			description = "REST API to Update Tools to maintain Aircrafts"
+			)
+	@ApiResponses ({
+		@ApiResponse (
+				
+				responseCode = "200",
+				description ="Tools Request Processed Successfully"			
+				),
+		@ApiResponse (
+				
+				responseCode = "500",
+				description ="An Error Occured"			
+			)
+	})
 	@PutMapping("/update_tools")
 	public ResponseEntity<ResponseDto> updateTools(@Valid @RequestBody ToolsDto toolsDto){
 		
@@ -105,6 +191,23 @@ public class MaintenanceController {
 
 	}
 	
+	@Operation (
+			
+			summary = "DELETE Tools REST API",
+			description = "REST API to Delete Parts to maintain Aircrafts"
+			)
+	@ApiResponses ({
+		@ApiResponse (
+				
+				responseCode = "200",
+				description ="Parts Request Processed Successfully"			
+				),
+		@ApiResponse (
+				
+				responseCode = "500",
+				description ="An Error Occured"			
+			)
+	})
 	@DeleteMapping("/delete_part")
 	public ResponseEntity<ResponseDto> deletePart(@NotEmpty @RequestParam String partsNumber){
 		
@@ -119,6 +222,23 @@ public class MaintenanceController {
 				.body(new ResponseDto(PartsConstants.MESSAGE_500, PartsConstants.STATUS_500));
 	}
 	
+	@Operation (
+			
+			summary = "DELETE Tools REST API",
+			description = "REST API to Delete Tools to maintain Aircrafts"
+			)
+	@ApiResponses ({
+		@ApiResponse (
+				
+				responseCode = "200",
+				description ="Tools Request Processed Successfully"			
+				),
+		@ApiResponse (
+				
+				responseCode = "500",
+				description ="An Error Occured"			
+				)
+	})
 	@DeleteMapping("/delete_tool")
 	public ResponseEntity<ResponseDto> deleteTool(@NotEmpty @RequestParam String toolsNumber){
 		

@@ -8,6 +8,8 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="swagger"/>
+			<item value="Validation"/>
 			<item value="EnableJdbcRepositories"/>
 			<item value="jdbc"/>
 		</list>
