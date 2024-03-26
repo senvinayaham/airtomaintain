@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `Parts` (
+CREATE TABLE IF NOT EXISTS `parts` (
 `parts_id` int auto_increment primary key,
 `parts_oem` int not null,
 `parts_name` varchar(100) not null,
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `Parts` (
 `updated_by` varchar(100) default null
 );
 
-create table if not exists `Tools` (
+create table if not exists `tools` (
 `tools_id` int auto_increment primary key,
 `tools_oem` int not null,
 `tools_name` varchar(100) not null,
