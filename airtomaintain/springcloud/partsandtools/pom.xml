@@ -61,16 +61,16 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency> -->
-		<!-- <dependency>
+		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
-		</dependency> -->
-		<dependency>
+		</dependency> 
+		<!-- <dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
-		</dependency>
+		</dependency>-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -117,7 +117,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<name>senvinayaham/${project.artifactId}:MaintenanceMySQL</name>
+						<name>senvinayaham/${project.artifactId}:MaintenanceH2</name>
 					</image>
 					<excludes>
 						<exclude>
