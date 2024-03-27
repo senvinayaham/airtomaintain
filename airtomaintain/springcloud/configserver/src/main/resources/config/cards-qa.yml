@@ -1,0 +1,12 @@
+
+build:
+   version: "2.0"
+   
+partsandtools:
+   message: "Contact Details for Maintenance Cards Team for any support issues in QA"
+   contactDetails:
+      name: "SenthilVinayaham - QA"
+      email: "{cipher}b5dd7f9fbf689753eb7a048857e67f79fd90c971a55a78b495bdbaa34123ec3bb30f7f0de3428f7dc415e38764474b7d"
+   onCallSupport:
+      (777) 111-2222
+      (888) 333-4444

@@ -1,0 +1,13 @@
+               
+build:
+   version: "3.0"
+   
+   
+partsandtools:
+   message: "Contact Details for Parts and Tools Team for any support issues"
+   contactDetails:
+      name: "SenthilVinayaham"
+      email: "senthilvinayaham@gmail.com"
+   onCallSupport:
+      (777) 111-2222
+      (888) 333-4444
