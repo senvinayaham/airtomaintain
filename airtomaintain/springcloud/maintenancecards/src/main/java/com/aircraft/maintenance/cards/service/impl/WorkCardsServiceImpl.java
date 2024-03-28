@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.aircraft.maintenance.cards.dto.WorkdCardsDto;
+import com.aircraft.maintenance.cards.dto.WorkCardsDto;
 import com.aircraft.maintenance.cards.entity.WorkCards;
 import com.aircraft.maintenance.cards.exception.WorkCardAlreadyExistsException;
 import com.aircraft.maintenance.cards.exception.ResourceNotFoundException;
@@ -38,37 +38,37 @@ public class WorkCardsServiceImpl implements IWorkCardsService{
 	private WorkCardsRepository workCardsRepository;
 	
 	@Override
-	public void createParts(WorkdCardsDto workdCardsDto) {
+	public void createWorkCard(WorkCardsDto workCardsDto) {
 		// TODO Auto-generated method stub
 		
-		WorkCards workCards = WorkCardMapper.mapToParts(new WorkCards(), workdCardsDto);
-		Optional<WorkCards> optionalParts = workCardsRepository.findByWorkCardNumber(workdCardsDto.getWorkCardNumber());
+		WorkCards workCards = WorkCardMapper.mapToWorkCard(new WorkCards(), workCardsDto);
+		Optional<WorkCards> optionalParts = workCardsRepository.findByWorkCardNumber(workCardsDto.getWorkCardNumber());
 		if (optionalParts.isPresent())
-			throw new WorkCardAlreadyExistsException("Given WorkCards:" + workdCardsDto.getWorkCardNumber()+ " already exists");
+			throw new WorkCardAlreadyExistsException("Given WorkCards:" + workCardsDto.getWorkCardNumber()+ " already exists");
 		workCardsRepository.save(workCards);
 	}
 
 	@Override
-	public WorkdCardsDto fetchParts(String workCardNumber) {
+	public WorkCardsDto fetchWorkCard(String workCardNumber) {
 		// TODO Auto-generated method stub
 		
 		WorkCards workCards = workCardsRepository.findByWorkCardNumber(workCardNumber).orElseThrow(
 				() -> new ResourceNotFoundException("WorkCards", "Work Card Number", workCardNumber)
 				);
 				
-		return WorkCardMapper.mapToPartsDto(new WorkdCardsDto(), workCards);
+		return WorkCardMapper.mapToWorkCardDto(new WorkCardsDto(), workCards);
 	}
 
 	@Override
-	public boolean updateParts(WorkdCardsDto workdCardsDto) {
+	public boolean updateWorkCard(WorkCardsDto workCardsDto) {
 		// TODO Auto-generated method stub
 		boolean isUpdated = false;
-		if (workdCardsDto!=null) {
+		if (workCardsDto!=null) {
 		
-			WorkCards workCards = workCardsRepository.findByWorkCardNumber(workdCardsDto.getWorkCardNumber()).orElseThrow(
-					() -> new ResourceNotFoundException("WorkCards", "PartsNumber", workdCardsDto.getWorkCardNumber())
+			WorkCards workCards = workCardsRepository.findByWorkCardNumber(workCardsDto.getWorkCardNumber()).orElseThrow(
+					() -> new ResourceNotFoundException("WorkCards", "PartsNumber", workCardsDto.getWorkCardNumber())
 					);
-			WorkCardMapper.mapToParts(workCards, workdCardsDto);
+			WorkCardMapper.mapToWorkCard(workCards, workCardsDto);
 			workCardsRepository.save(workCards);
 			isUpdated = true;
 		}
@@ -76,7 +76,7 @@ public class WorkCardsServiceImpl implements IWorkCardsService{
 	}
 
 	@Override
-	public boolean deleteParts(String workCardNumber) {
+	public boolean deleteWorkCard(String workCardNumber) {
 		// TODO Auto-generated method stub
 
 		WorkCards workCards = workCardsRepository.findByWorkCardNumber(workCardNumber).orElseThrow(

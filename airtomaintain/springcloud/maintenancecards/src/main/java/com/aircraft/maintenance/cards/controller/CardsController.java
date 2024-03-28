@@ -20,7 +20,7 @@ import com.aircraft.maintenance.cards.constants.WorkCardsConstants;
 import com.aircraft.maintenance.cards.constants.TaskCardsConstants;
 import com.aircraft.maintenance.cards.dto.ErrorResponseDto;
 import com.aircraft.maintenance.cards.dto.CardsContactInfo;
-import com.aircraft.maintenance.cards.dto.WorkdCardsDto;
+import com.aircraft.maintenance.cards.dto.WorkCardsDto;
 import com.aircraft.maintenance.cards.dto.ResponseDto;
 import com.aircraft.maintenance.cards.dto.TaskCardsDto;
 import com.aircraft.maintenance.cards.service.IWorkCardsService;
@@ -48,13 +48,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Validated
 public class CardsController {
 
-	private IWorkCardsService iPartsService;
-	private ITaskCardsService iToolsService;
+	private IWorkCardsService iWorkCardsService;
+	private ITaskCardsService iTaskCardsService;
 	
-	public CardsController(IWorkCardsService iPartsService, ITaskCardsService iToolsService) {
+	public CardsController(IWorkCardsService iWorkCardsService, ITaskCardsService iTaskCardsService) {
 		
-		this.iPartsService = iPartsService;
-		this.iToolsService = iToolsService;
+		this.iWorkCardsService = iWorkCardsService;
+		this.iTaskCardsService = iTaskCardsService;
 		
 	}
 	
@@ -86,10 +86,11 @@ public class CardsController {
 					
 					)
 			)
-	@PostMapping("/create_parts")
-	public ResponseEntity<ResponseDto> createParts(@Valid @RequestBody WorkdCardsDto workdCardsDto){
+	@PostMapping("/create_workcard")
+	public ResponseEntity<ResponseDto> createWorkCard(@Valid @RequestBody WorkCardsDto workCardsDto){
 		
-		iPartsService.createParts(workdCardsDto);
+		iWorkCardsService.createWorkCard(workCardsDto);
+		
 		return ResponseEntity
 				.status(HttpStatus.CREATED)
 				.body(new ResponseDto(WorkCardsConstants.MESSAGE_201, WorkCardsConstants.STATUS_201));
@@ -98,18 +99,18 @@ public class CardsController {
 
 	@Operation (
 			
-			summary = "CREATE TaskCards REST API",
+			summary = "CREATE TaskCard REST API",
 			description = "REST API to create TaskCards to maintain Aircrafts"
 			)
 	@ApiResponse (
 			
 			responseCode = "201",
-			description ="WorkCards Created Successfuly"			
+			description ="TaskCard Created Successfuly"			
 			)
-	@PostMapping("/create_tools")
-	public ResponseEntity<ResponseDto> createTools(@Valid @RequestBody TaskCardsDto taskCardsDto){
+	@PostMapping("/create_taskcard")
+	public ResponseEntity<ResponseDto> createTaskCard(@Valid @RequestBody TaskCardsDto taskCardsDto){
 		
-		iToolsService.createTools(taskCardsDto);
+		iTaskCardsService.createTaskCard(taskCardsDto);
 		return ResponseEntity
 				.status(HttpStatus.CREATED)
 				.body(new ResponseDto(TaskCardsConstants.MESSAGE_201, TaskCardsConstants.STATUS_201));
@@ -121,14 +122,14 @@ public class CardsController {
 			summary = "FETCH WorkCards REST API",
 			description = "REST API to Fetch WorkCards to maintain Aircrafts"
 			)
-	@GetMapping("/fetch_parts")
-	public ResponseEntity<WorkdCardsDto> fetchParts(@NotEmpty @RequestParam String partsNumber){
+	@GetMapping("/fetch_workcard")
+	public ResponseEntity<WorkCardsDto> fetchWorkCard(@NotEmpty @RequestParam String workCardNumber){
 		
-		WorkdCardsDto workdCardsDto = iPartsService.fetchParts(
-				partsNumber);
+		WorkCardsDto workCardsDto = iWorkCardsService.fetchWorkCard(
+				workCardNumber);
 		return ResponseEntity
 				.status(HttpStatus.OK)
-				.body(workdCardsDto);
+				.body(workCardsDto);
 		
 	}
 
@@ -137,11 +138,11 @@ public class CardsController {
 			summary = "FETCH TaskCards REST API",
 			description = "REST API to Fetch TaskCards to maintain Aircrafts"
 			)
-	@GetMapping("/fetch_tools")
+	@GetMapping("/fetch_taskcard")
 	public ResponseEntity<
-	TaskCardsDto> fetchTools(@NotEmpty @RequestParam String toolsNumber){
+	TaskCardsDto> fetchTaskCard(@NotEmpty @RequestParam String toolsNumber){
 		
-		TaskCardsDto taskCardsDto = iToolsService.fetchTools(toolsNumber);
+		TaskCardsDto taskCardsDto = iTaskCardsService.fetchTaskCard(toolsNumber);
 		return ResponseEntity
 				.status(HttpStatus.OK)
 				.body(taskCardsDto);
@@ -165,10 +166,10 @@ public class CardsController {
 				description ="An Error Occured"			
 				)
 	})
-	@PutMapping("/update_parts")
-	public ResponseEntity<ResponseDto> updateParts(@Valid @RequestBody WorkdCardsDto workdCardsDto){
+	@PutMapping("/update_workcard")
+	public ResponseEntity<ResponseDto> updateWorkCard(@Valid @RequestBody WorkCardsDto workCardsDto){
 		
-		boolean isUpdated = iPartsService.updateParts(workdCardsDto);
+		boolean isUpdated = iWorkCardsService.updateWorkCard(workCardsDto);
 		if(isUpdated) {
 			return ResponseEntity.status(HttpStatus.OK)
 					.body(new ResponseDto(WorkCardsConstants.MESSAGE_200, WorkCardsConstants.STATUS_200));
@@ -195,11 +196,11 @@ public class CardsController {
 				description ="An Error Occured"			
 			)
 	})
-	@PutMapping("/update_tools")
-	public ResponseEntity<ResponseDto> updateTools(@Valid @RequestBody TaskCardsDto taskCardsDto){
+	@PutMapping("/update_taskcard")
+	public ResponseEntity<ResponseDto> updateTaskCard(@Valid @RequestBody TaskCardsDto taskCardsDto){
 		
 		
-		boolean isUpdated = iToolsService.updateTools(taskCardsDto);
+		boolean isUpdated = iTaskCardsService.updateTaskCard(taskCardsDto);
 		if(isUpdated) {
 			return ResponseEntity.status(HttpStatus.OK)
 					.body(new ResponseDto(TaskCardsConstants.MESSAGE_200, TaskCardsConstants.STATUS_200));
@@ -226,10 +227,10 @@ public class CardsController {
 				description ="An Error Occured"			
 			)
 	})
-	@DeleteMapping("/delete_part")
-	public ResponseEntity<ResponseDto> deletePart(@NotEmpty @RequestParam String partsNumber){
+	@DeleteMapping("/delete_workcard")
+	public ResponseEntity<ResponseDto> deleteWorkCard(@NotEmpty @RequestParam String partsNumber){
 		
-		boolean isDeleted = iPartsService.deleteParts(partsNumber);
+		boolean isDeleted = iWorkCardsService.deleteWorkCard(partsNumber);
 		if(isDeleted) {
 			
 			return ResponseEntity.status(HttpStatus.OK)
@@ -257,10 +258,10 @@ public class CardsController {
 				description ="An Error Occured"			
 				)
 	})
-	@DeleteMapping("/delete_tool")
-	public ResponseEntity<ResponseDto> deleteTool(@NotEmpty @RequestParam String toolsNumber){
+	@DeleteMapping("/delete_taskcard")
+	public ResponseEntity<ResponseDto> deleteTaskCard(@NotEmpty @RequestParam String toolsNumber){
 		
-		boolean isDeleted = iToolsService.deleteTools(toolsNumber);
+		boolean isDeleted = iTaskCardsService.deleteTaskCard(toolsNumber);
 		if(isDeleted) {
 			
 			return ResponseEntity.status(HttpStatus.OK)

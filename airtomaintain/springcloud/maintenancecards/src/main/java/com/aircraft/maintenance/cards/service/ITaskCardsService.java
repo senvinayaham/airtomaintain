@@ -12,24 +12,24 @@ public interface ITaskCardsService {
 	 * @param TaskCardsDto - TaskCardsDto Object
 	 *
 	 */
-	void createTools(TaskCardsDto taskCardsDto);
+	void createTaskCard(TaskCardsDto taskCardsDto);
 	
 	/**
-	 * @param String - toolsNumber
-	 * @return WorkdCardsDto - TaskCardsDto Object
+	 * @param String - taskCardNumber
+	 * @return taskCardsDto - TaskCardsDto Object
 	 */
-	TaskCardsDto fetchTools(String toolsNumber);
+	TaskCardsDto fetchTaskCard(String taskCardNumber);
 
 	/**
 	 * @param TaskCardsDto - toolsDto
 	 * @return boolean - True/False based on the update status
 	 */
-	boolean updateTools(TaskCardsDto taskCardsDto);
+	boolean updateTaskCard(TaskCardsDto taskCardsDto);
 
 	/**
-	 * @param String - toolsNumber
+	 * @param String - taskCardNumber
 	 * @return boolean - True/False based on the update status
 	 */
-	boolean deleteTools(String toolsNumber);
+	boolean deleteTaskCard(String taskCardNumber);
 
 }

@@ -1,6 +1,6 @@
 package com.aircraft.maintenance.cards.service;
 
-import com.aircraft.maintenance.cards.dto.WorkdCardsDto;
+import com.aircraft.maintenance.cards.dto.WorkCardsDto;
 
 /**
  * @author senthilvinayahammurugan
@@ -9,27 +9,27 @@ import com.aircraft.maintenance.cards.dto.WorkdCardsDto;
 public interface IWorkCardsService {
 
 	/**
-	 * @param WorkdCardsDto - WorkdCardsDto Object
+	 * @param WorkCardsDto - WorkCardsDto Object
 	 *
 	 */
-	void createParts(WorkdCardsDto workdCardsDto);
+	void createWorkCard(WorkCardsDto workCardsDto);
 	
 	/**
-	 * @param String - partsNumber
-	 * @return WorkdCardsDto - WorkdCardsDto Object
+	 * @param String - workCardNumber
+	 * @return WorkCardsDto - WorkCardsDto Object
 	 */
-	WorkdCardsDto fetchParts(String partsNumber);
+	WorkCardsDto fetchWorkCard(String workCardNumber);
 
 	/**
-	 * @param WorkdCardsDto - partsDto
+	 * @param WorkCardsDto - workCardsDto
 	 * @return boolean - True/False based on the update status
 	 */
-	boolean updateParts(WorkdCardsDto workdCardsDto);
+	boolean updateWorkCard(WorkCardsDto workCardsDto);
 
 	/**
-	 * @param String - partsNumber
+	 * @param String - workCardNumber
 	 * @return boolean - True/False based on the update status
 	 */
-	boolean deleteParts(String partsNumber);
+	boolean deleteWorkCard(String workCardNumber);
 
 }

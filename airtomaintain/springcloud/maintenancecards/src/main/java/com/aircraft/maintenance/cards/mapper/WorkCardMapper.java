@@ -3,7 +3,8 @@
  */
 package com.aircraft.maintenance.cards.mapper;
 
-import com.aircraft.maintenance.cards.dto.WorkdCardsDto;
+import com.aircraft.maintenance.cards.dto.WorkCardDetailsDto;
+import com.aircraft.maintenance.cards.dto.WorkCardsDto;
 import com.aircraft.maintenance.cards.entity.WorkCards;
 
 /**
@@ -11,7 +12,7 @@ import com.aircraft.maintenance.cards.entity.WorkCards;
  *
  */
 public class WorkCardMapper {
-	public static WorkdCardsDto mapToPartsDto(WorkdCardsDto workdCardsDto, WorkCards workCards) {
+	public static WorkCardsDto mapToWorkCardDto(WorkCardsDto workdCardsDto, WorkCards workCards) {
 		
 
 		workdCardsDto.setWorkCardDescription(workCards.getWorkCardDescription());
@@ -22,7 +23,7 @@ public class WorkCardMapper {
 		
 	}
 	
-	public static WorkCards mapToParts(WorkCards workCards, WorkdCardsDto workdCardsDto) {
+	public static WorkCards mapToWorkCard(WorkCards workCards, WorkCardsDto workdCardsDto) {
 		
 
 		workCards.setWorkCardDescription(workdCardsDto.getWorkCardDescription());
@@ -31,5 +32,15 @@ public class WorkCardMapper {
 
 		return workCards;
 	}
+	
+	public static WorkCardDetailsDto mapToWorkCardDetailsDto(WorkCards workCards, WorkCardDetailsDto workCardDetailsDto) {
+		
+
+		workCardDetailsDto.setWorkCardDescription(workCards.getWorkCardDescription());
+		workCardDetailsDto.setWorkCardNumber(workCards.getWorkCardNumber());
+
+		return workCardDetailsDto;
+	}
+	
 
 }

@@ -3,7 +3,7 @@
  */
 package com.aircraft.maintenance.cards.mapper;
 
-import com.aircraft.maintenance.cards.dto.WorkdCardsDto;
+import com.aircraft.maintenance.cards.dto.WorkCardsDto;
 import com.aircraft.maintenance.cards.dto.TaskCardsDto;
 import com.aircraft.maintenance.cards.entity.TaskCards;
 

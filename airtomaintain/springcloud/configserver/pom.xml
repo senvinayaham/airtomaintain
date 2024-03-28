@@ -59,7 +59,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<name>senvinayaham/${project.artifactId}:MaintenanceMySQL</name>
+						<name>senvinayaham/${project.artifactId}:WithEureka</name>
 					</image>
 					<excludes>
 						<exclude>

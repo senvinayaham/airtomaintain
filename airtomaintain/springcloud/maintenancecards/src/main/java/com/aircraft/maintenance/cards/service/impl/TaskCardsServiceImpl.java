@@ -8,7 +8,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.aircraft.maintenance.cards.dto.WorkdCardsDto;
+import com.aircraft.maintenance.cards.dto.WorkCardsDto;
 import com.aircraft.maintenance.cards.dto.TaskCardsDto;
 import com.aircraft.maintenance.cards.entity.WorkCards;
 import com.aircraft.maintenance.cards.entity.TaskCards;
@@ -38,7 +38,7 @@ public class TaskCardsServiceImpl implements ITaskCardsService{
 	private TaskCardsRepository taskCardsRepository;
 
 	@Override
-	public void createTools(TaskCardsDto taskCardsDto) {
+	public void createTaskCard(TaskCardsDto taskCardsDto) {
 		// TODO Auto-generated method stub
 		
 		TaskCards taskCards = TaskCardMapper.mapToTools(taskCardsDto, new TaskCards());
@@ -49,7 +49,7 @@ public class TaskCardsServiceImpl implements ITaskCardsService{
 	}
 	
 	@Override
-	public TaskCardsDto fetchTools(String taskCardNumber) {
+	public TaskCardsDto fetchTaskCard(String taskCardNumber) {
 		// TODO Auto-generated method stub
 		
 		TaskCards taskCards = taskCardsRepository.findByTaskCardNumber(taskCardNumber).orElseThrow(
@@ -60,7 +60,7 @@ public class TaskCardsServiceImpl implements ITaskCardsService{
 	}
 
 	@Override
-	public boolean updateTools(TaskCardsDto taskCardsDto) {
+	public boolean updateTaskCard(TaskCardsDto taskCardsDto) {
 		// TODO Auto-generated method stub
 		boolean isUpdated = false;
 		if (taskCardsDto!=null) {
@@ -76,7 +76,7 @@ public class TaskCardsServiceImpl implements ITaskCardsService{
 	}
 
 	@Override
-	public boolean deleteTools(String taskCardNumber) {
+	public boolean deleteTaskCard(String taskCardNumber) {
 		// TODO Auto-generated method stub
 
 		TaskCards taskCards = taskCardsRepository.findByTaskCardNumber(taskCardNumber).orElseThrow(

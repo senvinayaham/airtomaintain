@@ -40,7 +40,16 @@
       		<groupId>org.springframework.cloud</groupId>
       		<artifactId>spring-cloud-starter-config</artifactId>
     	</dependency>
-   	<!--	<dependency>
+   	    <dependency>
+      		<groupId>org.springframework.cloud</groupId>
+      		<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+    	</dependency>
+    	<dependency>
+      		<groupId>org.springframework.cloud</groupId>
+    	  	<artifactId>spring-cloud-starter-openfeign</artifactId>
+	    </dependency>
+    	
+   	<!--<dependency>
       		<groupId>org.springframework.cloud</groupId>
       		<artifactId>spring-cloud-starter-bus-amqp</artifactId>
     	</dependency>-->    	
@@ -117,7 +126,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<name>senvinayaham/${project.artifactId}:MaintenanceH2</name>
+						<name>senvinayaham/${project.artifactId}:WithEureka</name>
 					</image>
 					<excludes>
 						<exclude>
