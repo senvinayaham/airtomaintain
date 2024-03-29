@@ -1,5 +1,7 @@
 package com.aircraft.maintenance.partsandtools.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,6 +53,7 @@ public class PartsAndToolsController {
 
 	private IPartsService iPartsService;
 	private IToolsService iToolsService;
+	private static final Logger logger = LoggerFactory.getLogger(PartsAndToolsController.class);
 	
 	public PartsAndToolsController(IPartsService iPartsService, IToolsService iToolsService) {
 		
@@ -122,8 +126,10 @@ public class PartsAndToolsController {
 			description = "REST API to Fetch Parts to maintain Aircrafts"
 			)
 	@GetMapping("/fetch_parts")
-	public ResponseEntity<PartsDto> fetchParts(@NotEmpty @RequestParam String partsNumber){
-		
+	public ResponseEntity<PartsDto> fetchParts(
+			@RequestHeader("aircraftmaintenance-correlation-id") String correlationId,
+			@NotEmpty @RequestParam String partsNumber){
+		logger.debug("aircraftmaintenance-correlation-id generated in RequestTraceFilter : {}", correlationId);
 		PartsDto partsDto = iPartsService.fetchParts(
 				partsNumber);
 		return ResponseEntity

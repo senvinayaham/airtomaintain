@@ -38,9 +38,17 @@ management:
       web:
          exposure:
             include: "*"
+   health:
+      readiness-state:
+         enabled: true
+      liveness-state:
+         enabled: true            
    endpoint:
       shutdown:
          enabled: true
+      health:
+         probes:
+            enabled: true           
    info:
       env:
          enabled: true
@@ -62,4 +70,11 @@ info:
        name: "partsandtools"
        description: "Parts and Tools Application for Aircraft Maintenace"
        version: "1.0.0"        
+
+logging:
+   level:
+      com:
+         aircraft:
+            maintenance:
+               partsandtools: DEBUG    
                               

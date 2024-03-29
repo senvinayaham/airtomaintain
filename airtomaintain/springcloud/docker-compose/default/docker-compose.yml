@@ -19,7 +19,7 @@ services:
    
    
    configserver:
-      image: "senvinayaham/configserver:WithEureka"
+      image: "senvinayaham/configserver:WithAPIGateway"
       container_name: configserver-ms
       ports:
          - "8071:8071"
@@ -38,7 +38,7 @@ services:
    
    
    eurekaserver:
-      image: "senvinayaham/eurekaserver:WithEureka"
+      image: "senvinayaham/eurekaserver:WithAPIGateway"
       container_name: eurekaserver-ms
       ports:
          - "8070:8070"
@@ -61,10 +61,16 @@ services:
          SPRING_APPLICATION_NAME: "eurekaserver" 
    
    partsandtools:
-      image: "senvinayaham/partsandtools:WithEureka"
+      image: "senvinayaham/partsandtools:WithAPIGateway"
       container_name: partsandtools-ms
       ports:
          - "8080:8080"
+      healthcheck:
+         test: "curl --fail --silent localhost:8080/actuator/health/readiness | grep UP || exit 1"
+         interval: 10s
+         timeout: 5s
+         retries: 10
+         start_period: 10s         
       extends:
          file: common-config.yml
          service: microservice-eureka-config
@@ -77,10 +83,16 @@ services:
             condition: service_healthy            
 
    cards:
-      image: "senvinayaham/cards:WithEureka"
+      image: "senvinayaham/cards:WithAPIGateway"
       container_name: cards-ms
       ports:
          - "8081:8080"
+      healthcheck:
+         test: "curl --fail --silent localhost:8081/actuator/health/readiness | grep UP || exit 1"
+         interval: 10s
+         timeout: 5s
+         retries: 10
+         start_period: 10s         
       extends:
          file: common-config.yml
          service: microservice-eureka-config
@@ -91,6 +103,26 @@ services:
             condition: service_healthy
          eurekaserver:
             condition: service_healthy   
+   
+   apigateway:
+      image: "senvinayaham/apigateway:WithAPIGateway"
+      container_name: apigateway-ms
+      ports:
+         - "8072:8072"
+      extends:
+         file: common-config.yml
+         service: microservice-eureka-config
+      environment:
+         SPRING_APPLICATION_NAME: "apigateway" 
+      depends_on:
+         configserver:
+            condition: service_healthy
+         eurekaserver:
+            condition: service_healthy   
+         partsandtools:
+            condition: service_healthy
+         cards:
+            condition: service_healthy
 
 networks:
    aircraftmaintenance:

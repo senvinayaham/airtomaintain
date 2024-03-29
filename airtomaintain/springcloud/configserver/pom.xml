@@ -59,7 +59,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<name>senvinayaham/${project.artifactId}:WithEureka</name>
+						<name>senvinayaham/${project.artifactId}:WithAPIGateway</name>
 					</image>
 					<excludes>
 						<exclude>

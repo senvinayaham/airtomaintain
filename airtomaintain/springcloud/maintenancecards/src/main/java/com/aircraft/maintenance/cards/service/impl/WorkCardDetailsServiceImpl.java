@@ -31,7 +31,7 @@ public class WorkCardDetailsServiceImpl implements IWorkCardDetailsService{
 
 	
 	@Override
-	public WorkCardDetailsDto fetchWorkCardDetails(String workCardNumber) {
+	public WorkCardDetailsDto fetchWorkCardDetails(String workCardNumber, String correlationId) {
 		// TODO Auto-generated method stub
 		
 		WorkCards workCards = workCardsRepository.findByWorkCardNumber(workCardNumber).orElseThrow(
@@ -39,7 +39,7 @@ public class WorkCardDetailsServiceImpl implements IWorkCardDetailsService{
 				);
 		
 		 WorkCardDetailsDto workCardDetailsDto =WorkCardMapper.mapToWorkCardDetailsDto(workCards, new WorkCardDetailsDto());
-		 ResponseEntity<PartsDto> partsDtoResponseEntity = partsAndToolsFeignClient.fetchParts(workCardNumber);
+		 ResponseEntity<PartsDto> partsDtoResponseEntity = partsAndToolsFeignClient.fetchParts(correlationId, workCardNumber);
 		 workCardDetailsDto.setPartsDto(partsDtoResponseEntity.getBody());
 		 
 		 return workCardDetailsDto;
