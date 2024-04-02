@@ -1,5 +1,7 @@
 package com.aircraft.maintenance.cards.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -24,8 +26,11 @@ import com.aircraft.maintenance.cards.dto.WorkCardsDto;
 import com.aircraft.maintenance.cards.dto.ResponseDto;
 import com.aircraft.maintenance.cards.dto.TaskCardsDto;
 import com.aircraft.maintenance.cards.service.IWorkCardsService;
+
 import com.aircraft.maintenance.cards.service.ITaskCardsService;
 
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.github.resilience4j.retry.annotation.Retry;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -48,6 +53,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Validated
 public class CardsController {
 
+	
+	private static final Logger logger = LoggerFactory.getLogger(CardsController.class);
 	private IWorkCardsService iWorkCardsService;
 	private ITaskCardsService iTaskCardsService;
 	
@@ -276,6 +283,7 @@ public class CardsController {
 			summary = "FETCH Build Information REST API",
 			description = "REST API to Fetch Build Information for WorkCards and TaskCards Service"
 			)
+	@Retry(name ="getBuildInfo", fallbackMethod = "getBuildInfoFallback")
 	@GetMapping("/build-info")
 	public ResponseEntity<String> getBuildInfo(){
 		
@@ -285,12 +293,24 @@ public class CardsController {
 		
 	}
 	
+	public ResponseEntity<String> getBuildInfoFallback(Throwable throwable){
+		
+
+		logger.debug("getBuildInfoFallback Method Invoked");
+		
+		return ResponseEntity
+				.status(HttpStatus.OK)
+				.body("1.0");
+		
+	}
+	
 	@Operation (
 			
 			summary = "FETCH Java Version",
 			description = "REST API to Fetch Java Version"
 			)
 	@GetMapping("/java-version")
+	@RateLimiter(name = "getJavaVersion" , fallbackMethod = "getJavaVersionFallback")
 	public ResponseEntity<String> getJavaVersion(){
 		
 		return ResponseEntity
@@ -298,6 +318,15 @@ public class CardsController {
 				.body(environment.getProperty("JAVA_HOME"));
 		
 	}
+	
+	public ResponseEntity<String> getJavaVersionFallback(Throwable thorowable){
+		
+		return ResponseEntity
+				.status(HttpStatus.OK)
+				.body("Please try after sometime since this is lower priority");
+		
+	}
+		
 	
 	@Operation (
 			

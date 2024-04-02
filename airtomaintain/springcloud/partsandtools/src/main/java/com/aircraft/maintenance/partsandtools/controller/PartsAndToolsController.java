@@ -311,7 +311,7 @@ public class PartsAndToolsController {
 			)
 	@GetMapping("/contact-info")
 	public ResponseEntity<PartsAndToolsContactInfo> getConstactInfo(){
-		
+		logger.debug("Invoked PartsAndTools contact-info API  ");
 		return ResponseEntity
 				.status(HttpStatus.OK)
 				.body(partsAndToolsContactInfo);

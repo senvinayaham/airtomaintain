@@ -40,7 +40,9 @@ public class WorkCardDetailsServiceImpl implements IWorkCardDetailsService{
 		
 		 WorkCardDetailsDto workCardDetailsDto =WorkCardMapper.mapToWorkCardDetailsDto(workCards, new WorkCardDetailsDto());
 		 ResponseEntity<PartsDto> partsDtoResponseEntity = partsAndToolsFeignClient.fetchParts(correlationId, workCardNumber);
-		 workCardDetailsDto.setPartsDto(partsDtoResponseEntity.getBody());
+		 
+		 if(null != partsDtoResponseEntity)
+			 workCardDetailsDto.setPartsDto(partsDtoResponseEntity.getBody());
 		 
 		 return workCardDetailsDto;
 	}

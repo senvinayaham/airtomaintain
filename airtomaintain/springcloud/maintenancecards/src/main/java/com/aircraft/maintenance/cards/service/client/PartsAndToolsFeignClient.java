@@ -17,7 +17,7 @@ import jakarta.validation.constraints.NotEmpty;
  * @author senthilvinayahammurugan
  *
  */
-@FeignClient("partsandtools")
+@FeignClient(name="partsandtools", fallback= PartsAndToolsFallback.class)
 public interface PartsAndToolsFeignClient {
 
 	@GetMapping(value="/api/v0/fetch_parts", consumes ="application/jason")

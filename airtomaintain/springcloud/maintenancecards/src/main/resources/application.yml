@@ -32,7 +32,10 @@ spring:
      # post: 5672
      # username: "guest"
      # password: "guest"
-         
+   cloud:
+      openfeign:
+         circuitbreaker:
+            enabled: true         
 management:
    endpoints:
       web:
@@ -79,5 +82,34 @@ logging:
          aircraft:
             maintenance:
                cars: DEBUG  
+resilience4j.circuitbreaker:
+   configs:
+      default:
+         slidingWindowSize: 10
+         permittedNumberOfCallsInHalfOpenState: 2
+         failureRateThreshold: 50
+         waitDurationInOpenState: 100
 
+resilience4j.retry:
+   configs:
+      default:
+         maxRetryAttempts: 3
+         waitDuration: 100
+         enableExponentialBackoff: true
+         exponentialBackoffMultiplier: 2
+#         ignoreExceptions:
+#            - java.lang.NullPointerException
+         retryExceptions:
+            - java.lang.TimeoutException   
+         
+resilience4j.ratelimiter:
+   configs:
+      default:
+         timeoutDuraion: 1000
+         limitRefreshPeriod: 5000
+         limitForPeriod: 1
+         
+         
+         
+         
                                      
