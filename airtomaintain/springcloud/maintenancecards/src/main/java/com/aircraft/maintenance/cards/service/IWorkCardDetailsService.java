@@ -15,5 +15,5 @@ import com.aircraft.maintenance.cards.dto.WorkCardDetailsDto;
 public interface IWorkCardDetailsService {
 
 	
-	WorkCardDetailsDto fetchWorkCardDetails(String workCardNumber, String correlationId);
+	WorkCardDetailsDto fetchWorkCardDetails(String correlationId, String workCardNumber);
 }

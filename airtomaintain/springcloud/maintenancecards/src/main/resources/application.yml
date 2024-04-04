@@ -100,7 +100,7 @@ resilience4j.retry:
 #         ignoreExceptions:
 #            - java.lang.NullPointerException
          retryExceptions:
-            - java.lang.TimeoutException   
+            - java.util.concurrent.TimeoutException  
          
 resilience4j.ratelimiter:
    configs:

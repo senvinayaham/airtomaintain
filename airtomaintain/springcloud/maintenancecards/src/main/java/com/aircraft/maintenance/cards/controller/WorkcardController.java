@@ -37,8 +37,9 @@ import jakarta.validation.constraints.NotEmpty;
 @Validated
 public class WorkcardController {
 	
-	private final IWorkCardDetailsService iWorkCardDetailsService;
 	private static final Logger logger = LoggerFactory.getLogger(WorkcardController.class);
+	
+	private final IWorkCardDetailsService iWorkCardDetailsService;
 	
 	public WorkcardController(IWorkCardDetailsService iWorkCardDetailsService) {
 		
@@ -67,7 +68,7 @@ public class WorkcardController {
 			@RequestHeader("aircraftmaintenance-correlation-id") String correlationId,
 			@NotEmpty @RequestParam String workCardNumber){
 		logger.debug("aircraftmaintenance-correlation-id generated in RequestTraceFilter : {}", correlationId);
-		WorkCardDetailsDto workCardDetailsDto = iWorkCardDetailsService.fetchWorkCardDetails(workCardNumber, correlationId);
+		WorkCardDetailsDto workCardDetailsDto = iWorkCardDetailsService.fetchWorkCardDetails(correlationId, workCardNumber);
 		
 		return ResponseEntity.status(HttpStatus.OK)
 				.body(workCardDetailsDto);

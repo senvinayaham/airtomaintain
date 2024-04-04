@@ -31,7 +31,7 @@ public class WorkCardDetailsServiceImpl implements IWorkCardDetailsService{
 
 	
 	@Override
-	public WorkCardDetailsDto fetchWorkCardDetails(String workCardNumber, String correlationId) {
+	public WorkCardDetailsDto fetchWorkCardDetails(String correlationId, String workCardNumber) {
 		// TODO Auto-generated method stub
 		
 		WorkCards workCards = workCardsRepository.findByWorkCardNumber(workCardNumber).orElseThrow(

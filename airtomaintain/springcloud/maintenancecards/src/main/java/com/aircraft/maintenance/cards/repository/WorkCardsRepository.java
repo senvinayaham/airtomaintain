@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.aircraft.maintenance.cards.entity.WorkCards;
 
+
 @Repository
 public interface WorkCardsRepository extends JpaRepository<WorkCards, Long>{
 
