@@ -29,5 +29,9 @@ public class WorkCards extends BaseEntity{
 	@Column(name="task_card_number")
 	private String workCardNumber;
 
+	@Column(name="communication_switch")
+	private Boolean communicationSwitch;
+
+
 
 }

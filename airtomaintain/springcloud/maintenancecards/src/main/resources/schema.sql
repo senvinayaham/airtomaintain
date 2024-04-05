@@ -2,6 +2,7 @@ CREATE TABLE IF NOT EXISTS `workcards` (
 `work_card_id` int auto_increment primary key,
 `work_card_description` varchar(100) not null,
 `work_card_number` varchar(100) not null,
+`communication_switch` boolean,
 `created_at` date not null,
 `created_by` varchar(100) not null,
 `updated_at` date default null,

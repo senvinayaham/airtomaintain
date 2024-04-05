@@ -32,4 +32,10 @@ public interface IWorkCardsService {
 	 */
 	boolean deleteWorkCard(String workCardNumber);
 
+	
+	/**
+	 * @param String - workCardNumber
+	 * @return boolean - True/False based on the update status
+	 */
+	boolean updateCommunicationStatus(String workCardNumber);
 }

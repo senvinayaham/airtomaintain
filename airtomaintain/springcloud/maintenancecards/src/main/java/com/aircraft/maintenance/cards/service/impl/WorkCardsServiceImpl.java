@@ -3,22 +3,21 @@
  */
 package com.aircraft.maintenance.cards.service.impl;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
-import org.springframework.http.ResponseEntity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import com.aircraft.maintenance.cards.dto.CardsMessageDto;
 import com.aircraft.maintenance.cards.dto.WorkCardsDto;
 import com.aircraft.maintenance.cards.entity.WorkCards;
 import com.aircraft.maintenance.cards.exception.WorkCardAlreadyExistsException;
 import com.aircraft.maintenance.cards.exception.ResourceNotFoundException;
 import com.aircraft.maintenance.cards.mapper.WorkCardMapper;
 import com.aircraft.maintenance.cards.repository.WorkCardsRepository;
-import com.aircraft.maintenance.cards.repository.TaskCardsRepository;
 import com.aircraft.maintenance.cards.service.IWorkCardsService;
+
 
 import lombok.AllArgsConstructor;
 
@@ -34,9 +33,9 @@ public class WorkCardsServiceImpl implements IWorkCardsService{
 	/**
 	 * Autowiring
 	 */
-	
+	private static final Logger log = LoggerFactory.getLogger(WorkCardsServiceImpl.class);
 	private WorkCardsRepository workCardsRepository;
-	
+	private final StreamBridge streamBridge;
 	@Override
 	public void createWorkCard(WorkCardsDto workCardsDto) {
 		// TODO Auto-generated method stub
@@ -45,9 +44,20 @@ public class WorkCardsServiceImpl implements IWorkCardsService{
 		Optional<WorkCards> optionalParts = workCardsRepository.findByWorkCardNumber(workCardsDto.getWorkCardNumber());
 		if (optionalParts.isPresent())
 			throw new WorkCardAlreadyExistsException("Given WorkCards:" + workCardsDto.getWorkCardNumber()+ " already exists");
-		workCardsRepository.save(workCards);
+		WorkCards savedWorkCards = workCardsRepository.save(workCards);
+		sendCommunication(savedWorkCards);
 	}
 
+	
+	private void sendCommunication(WorkCards workcards) {
+		
+		var cardsMessageDto = new CardsMessageDto(workcards.getWorkCardNumber(), workcards.getWorkCardDescription(), "cards@sample.com");
+		log.info("Sending Communication request for the details: {}", cardsMessageDto);
+		var result = streamBridge.send("sendCommunication-out-0", workcards);
+		log.info("Sending communication request successfully triggered?: {}", result);
+		
+	}
+	
 	@Override
 	public WorkCardsDto fetchWorkCard(String workCardNumber) {
 		// TODO Auto-generated method stub
@@ -85,6 +95,25 @@ public class WorkCardsServiceImpl implements IWorkCardsService{
 		workCardsRepository.deleteByWorkCardNumber(workCards.getWorkCardNumber());
 		
 		return true;
+	}
+
+
+	@Override
+	public boolean updateCommunicationStatus(String workCardNumber) {
+		// TODO Auto-generated method stub
+		boolean isUpdated=false;
+		if(workCardNumber != null) {
+			
+			WorkCards workcards = workCardsRepository.findByWorkCardNumber(workCardNumber).orElseThrow(
+					() -> new ResourceNotFoundException("WorkCards", "Work Card Number", workCardNumber)
+					);
+			
+			workcards.setCommunicationSwitch(true);
+			workCardsRepository.save(workcards);
+			isUpdated = true;
+		}
+		
+		return isUpdated;
 	}
 
 	
