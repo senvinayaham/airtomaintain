@@ -1,28 +1,28 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-deploymentName: cards-deployment
-serviceName: cards
-appLabel: cards
-appName: cards
+deploymentName: eurekaserver-deployment
+serviceName: eurekaserver
+appLabel: eurekaserver
+appName: eurekaserver
 
 replicaCount: 1
 
 image:
-  repository: aircraftmaintenance/cards
+  repository: aircraftmaintenance/eurekaserver
   tag: maintenance
 
-containerPort: 9000
+containerPort: 8071
 
 service:
   type: ClusterIP
-  port: 9000
-  targetPort: 9000
+  port: 8071
+  targetPort: 8071
 
 appname_enabled: true
-profile_enabled: true
+profile_enabled: false
 config_enabled: true
-eureka_enabled: true
+eureka_enabled: false
 resouceserver_enabled: false
 otel_enabled: false
 kafka_enabled: false

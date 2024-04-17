@@ -1,0 +1,6 @@
+dependencies:
+- name: aircraftmaintenance-common
+  repository: file://../../aircraftmaintenance-common
+  version: 0.1.0
+digest: sha256:0c7d95c671074a0782de370201f33518c947d4a2da54e309ad5e36df3f84de4e
+generated: "2024-04-16T14:24:37.922983-06:00"
