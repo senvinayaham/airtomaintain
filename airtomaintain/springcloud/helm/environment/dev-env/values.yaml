@@ -1,8 +1,8 @@
 global:
   configMapName: aircraftmaintenancedev-configmap
   activeProfile: default
-  configServerURL: configserver:http://configserver:8071/
-  eurekaServerURL: http://eurekaserver:8070/eureka/
+  configServerURL: configserver:http://configserver:8070/
+  eurekaServerURL: http://eurekaserver:8071/eureka/
   keyCloakURL: http://keycloak.default.svc.cluster.local:80/realms/master/protocol/openid-connect/certs
   openTelemetryJavaAgent: "-javaagent:/app/libs/opentelemetry-javaagent-1.32.0.jar"
   otelExporterEndPoint: http://tempo-grafana-tempo-distributor:4317

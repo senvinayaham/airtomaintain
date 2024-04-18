@@ -28,32 +28,26 @@ dependencies:
     version: 0.1.0
     repository: file://../../aircraftmaintenance-common
 
-dependencies:
   - name: configserver
     version: 0.1.0
     repository: file://../../aircraftmaintenance-services/configserver
 
-dependencies:
   - name: eurekaserver
     version: 0.1.0
     repository: file://../../aircraftmaintenance-services/eurekaserver
 
-dependencies:
   - name: cards
     version: 0.1.0
     repository: file://../../aircraftmaintenance-services/cards
 
-dependencies:
   - name: partsandtools
     version: 0.1.0
     repository: file://../../aircraftmaintenance-services/partsandtools
 
-dependencies:
   - name: apigateway
     version: 0.1.0
     repository: file://../../aircraftmaintenance-services/apigateway
 
-dependencies:
   - name: message
     version: 0.1.0
     repository: file://../../aircraftmaintenance-services/message

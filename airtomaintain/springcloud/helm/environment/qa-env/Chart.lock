@@ -1,0 +1,24 @@
+dependencies:
+- name: aircraftmaintenance-common
+  repository: file://../../aircraftmaintenance-common
+  version: 0.1.0
+- name: configserver
+  repository: file://../../aircraftmaintenance-services/configserver
+  version: 0.1.0
+- name: eurekaserver
+  repository: file://../../aircraftmaintenance-services/eurekaserver
+  version: 0.1.0
+- name: cards
+  repository: file://../../aircraftmaintenance-services/cards
+  version: 0.1.0
+- name: partsandtools
+  repository: file://../../aircraftmaintenance-services/partsandtools
+  version: 0.1.0
+- name: apigateway
+  repository: file://../../aircraftmaintenance-services/apigateway
+  version: 0.1.0
+- name: message
+  repository: file://../../aircraftmaintenance-services/message
+  version: 0.1.0
+digest: sha256:59496a7766fb1cafa443acbc36bb733fbb9b9715522ebb6e8a1cdd2c62f46aed
+generated: "2024-04-17T10:29:44.123415-06:00"
