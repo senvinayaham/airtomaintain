@@ -67,9 +67,10 @@ public class WorkcardController {
 	public ResponseEntity<WorkCardDetailsDto> fetchWorkcardDetails(
 			@RequestHeader("aircraftmaintenance-correlation-id") String correlationId,
 			@NotEmpty @RequestParam String workCardNumber){
-		logger.debug("aircraftmaintenance-correlation-id generated in RequestTraceFilter : {}", correlationId);
+		//logger.debug("aircraftmaintenance-correlation-id generated in RequestTraceFilter : {}", correlationId);
+		logger.debug("Fetch Worcard Details Start");
 		WorkCardDetailsDto workCardDetailsDto = iWorkCardDetailsService.fetchWorkCardDetails(correlationId, workCardNumber);
-		
+		logger.debug("Fetch Worcard Details End");
 		return ResponseEntity.status(HttpStatus.OK)
 				.body(workCardDetailsDto);
 	}

@@ -129,9 +129,11 @@ public class PartsAndToolsController {
 	public ResponseEntity<PartsDto> fetchParts(
 			@RequestHeader("aircraftmaintenance-correlation-id") String correlationId,
 			@NotEmpty @RequestParam String partsNumber){
-		logger.debug("aircraftmaintenance-correlation-id generated in RequestTraceFilter : {}", correlationId);
+		//logger.debug("aircraftmaintenance-correlation-id generated in RequestTraceFilter : {}", correlationId);
+		logger.debug("Fetch Parts and Tools Details Start");
 		PartsDto partsDto = iPartsService.fetchParts(
 				partsNumber);
+		logger.debug("Fetch Parts and Tools Details End");
 		return ResponseEntity
 				.status(HttpStatus.OK)
 				.body(partsDto);
