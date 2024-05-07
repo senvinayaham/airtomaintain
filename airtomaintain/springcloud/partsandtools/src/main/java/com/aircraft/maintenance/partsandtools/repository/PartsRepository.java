@@ -9,10 +9,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.aircraft.maintenance.partsandtools.entity.Parts;
 
+import reactor.core.publisher.Mono;
+
 @Repository
 public interface PartsRepository extends JpaRepository<Parts, Long>{
 
 	Optional<Parts> findByPartsNumber(String partsNumber);
+	
+	Mono<Parts> findByPartsNumber1(String partsNumber);
 	
 	@Transactional
 	@Modifying

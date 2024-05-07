@@ -5,6 +5,7 @@ package com.aircraft.maintenance.partsandtools.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ import com.aircraft.maintenance.partsandtools.repository.PartsRepository;
 import com.aircraft.maintenance.partsandtools.repository.ToolsRepository;
 import com.aircraft.maintenance.partsandtools.service.IPartsService;
 
+import graphql.schema.DataFetcher;
 import lombok.AllArgsConstructor;
 
 /**
@@ -87,5 +89,14 @@ public class PartsServiceImpl implements IPartsService{
 		return true;
 	}
 
+	
+	public DataFetcher<CompletableFuture<Parts>> getPart() {
+		
+
+		return env -> {
+			return partsRepository.findByPartsNumber1(env.getArgument("partsNumber")).toFuture();
+		};
+	}
+	
 	
 }

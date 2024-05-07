@@ -1,5 +1,7 @@
 package com.aircraft.maintenance.partsandtools.controller;
 
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +28,13 @@ import com.aircraft.maintenance.partsandtools.dto.PartsAndToolsContactInfo;
 import com.aircraft.maintenance.partsandtools.dto.PartsDto;
 import com.aircraft.maintenance.partsandtools.dto.ResponseDto;
 import com.aircraft.maintenance.partsandtools.dto.ToolsDto;
+import com.aircraft.maintenance.partsandtools.entity.GraphQLRequestBody;
 import com.aircraft.maintenance.partsandtools.service.IPartsService;
 import com.aircraft.maintenance.partsandtools.service.IToolsService;
 
+import graphql.ExecutionInput;
+import graphql.ExecutionResult;
+import graphql.GraphQL;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -36,6 +42,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
+import reactor.core.publisher.Mono;
 import io.swagger.v3.oas.annotations.media.Schema;
 /**
  * @author senthilvinayahammurugan
@@ -53,6 +60,7 @@ public class PartsAndToolsController {
 
 	private IPartsService iPartsService;
 	private IToolsService iToolsService;
+	private GraphQL graphql;
 	private static final Logger logger = LoggerFactory.getLogger(PartsAndToolsController.class);
 	
 	public PartsAndToolsController(IPartsService iPartsService, IToolsService iToolsService) {
@@ -318,5 +326,13 @@ public class PartsAndToolsController {
 				.status(HttpStatus.OK)
 				.body(partsAndToolsContactInfo);
 		
-	}	
+	}
+	
+	
+	@PostMapping(value="graphql", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Mono<Map<String,Object>> execute(@RequestBody GraphQLRequestBody body) {
+		return Mono.fromCompletionStage(graphql.executeAsync(ExecutionInput.newExecutionInput().query(body.getQuery())
+				.operationName(body.getOperationName()).variables(body.getVariables()).build()))
+				.map(ExecutionResult::toSpecification);
+	}
 }

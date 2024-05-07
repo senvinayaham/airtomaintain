@@ -1,0 +1,25 @@
+type Query{
+	getPart(id:String!):Part
+	getTool(id:String!):Tool
+}
+
+type Mutation{
+	createPart(partOem:Int, partName:String, partNumber:String, partMfn:String, partQty:Int)
+	createTool(ToolOem:Int, toolName:String, toolNumber:String, toolMfn:String, toolQty:Int)
+}
+
+type Part{
+	partOem:Int
+	partName:String
+	partNumber:String
+	partMfn:String
+	partQty:Int
+}
+
+type Tool{
+	toolOem:Int
+	toolName:String
+	toolNumber:String
+	toolMfn:String
+	toolQty:Int
+}
