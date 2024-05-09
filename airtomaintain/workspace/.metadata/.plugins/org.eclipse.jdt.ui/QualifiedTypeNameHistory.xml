@@ -1,24 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.airtomaintain.maintenance.mapper.ToolsMapper"/>
-    <fullyQualifiedTypeName name="com.airtomaintain.maintenance.exception.PartsAlreadyExistsException"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ControllerAdvice"/>
-    <fullyQualifiedTypeName name="org.springframework.web.context.request.WebRequest"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ExceptionHandler"/>
-    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
-    <fullyQualifiedTypeName name="com.airtomaintain.maintenance.service.IPartsService"/>
-    <fullyQualifiedTypeName name="java.util.Optional"/>
-    <fullyQualifiedTypeName name="com.airtomaintain.maintenance.exception.ToolsAlreadyExistsException"/>
-    <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
-    <fullyQualifiedTypeName name="com.airtomaintain.maintenance.dto.ToolsDto"/>
-    <fullyQualifiedTypeName name="com.airtomaintain.maintenance.service.IToolsService"/>
-    <fullyQualifiedTypeName name="com.airtomaintain.maintenance.constants.ToolsConstants"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
-    <fullyQualifiedTypeName name="com.airtomaintain.maintenance.entity.Parts"/>
-    <fullyQualifiedTypeName name="com.airtomaintain.maintenance.entity.Tools"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseStatus"/>
     <fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
     <fullyQualifiedTypeName name="com.airtomaintain.maintenance.exception.ResourceNotFoundException"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PutMapping"/>
@@ -32,7 +13,6 @@
     <fullyQualifiedTypeName name="jakarta.validation.constraints.Size"/>
     <fullyQualifiedTypeName name="jakarta.validation.constraints.NotEmpty"/>
     <fullyQualifiedTypeName name="org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler"/>
-    <fullyQualifiedTypeName name="java.util.Map"/>
     <fullyQualifiedTypeName name="java.util.HashMap"/>
     <fullyQualifiedTypeName name="org.springframework.validation.ObjectError"/>
     <fullyQualifiedTypeName name="org.springframework.validation.FieldError"/>
@@ -60,4 +40,24 @@
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.util.stream.Stream"/>
+    <fullyQualifiedTypeName name="graphql.ExecutionInput"/>
+    <fullyQualifiedTypeName name="graphql.ExecutionResult"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.util.Objects"/>
+    <fullyQualifiedTypeName name="java.util.Collections"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
+    <fullyQualifiedTypeName name="graphql.GraphQL"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="graphql.schema.idl.SchemaParser"/>
+    <fullyQualifiedTypeName name="org.springframework.core.io.ClassPathResource"/>
+    <fullyQualifiedTypeName name="graphql.schema.idl.TypeDefinitionRegistry"/>
+    <fullyQualifiedTypeName name="graphql.schema.idl.RuntimeWiring"/>
+    <fullyQualifiedTypeName name="com.aircraft.maintenance.partsandtools.entity.GraphQLRequestBody"/>
+    <fullyQualifiedTypeName name="graphql.schema.idl.TypeRuntimeWiring"/>
+    <fullyQualifiedTypeName name="graphql.schema.idl.SchemaGenerator"/>
+    <fullyQualifiedTypeName name="graphql.schema.GraphQLSchema"/>
+    <fullyQualifiedTypeName name="graphql.schema.DataFetcher"/>
+    <fullyQualifiedTypeName name="java.util.concurrent.CompletableFuture"/>
+    <fullyQualifiedTypeName name="com.aircraft.maintenance.partsandtools.entity.Parts"/>
+    <fullyQualifiedTypeName name="reactor.core.publisher.Mono"/>
 </qualifiedTypeNameHistroy>
