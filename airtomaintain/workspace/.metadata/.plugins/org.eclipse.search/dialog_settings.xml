@@ -39,14 +39,15 @@
 			<item key="textPattern" value=""/>
 			<item key="scope" value="0"/>
 			<list key="fileNamePatterns">
-				<item value="Test*.java"/>
+				<item value="graphql*"/>
 			</list>
 			<list key="workingSets">
 			</list>
 		</section>
 		<section name="EXTENSIONS">
-			<item key="0" value="Test*.java"/>
-			<item key="1" value="*"/>
+			<item key="0" value="graphql*"/>
+			<item key="1" value="Test*.java"/>
+			<item key="2" value="*"/>
 		</section>
 		<section name="HISTORY1">
 			<item key="ignoreCase" value="true"/>
