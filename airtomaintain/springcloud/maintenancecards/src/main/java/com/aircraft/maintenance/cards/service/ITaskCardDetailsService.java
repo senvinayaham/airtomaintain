@@ -3,7 +3,7 @@
  */
 package com.aircraft.maintenance.cards.service;
 
-import com.aircraft.maintenance.cards.dto.WorkCardDetailsDto;
+import com.aircraft.maintenance.cards.dto.TaskCardDetailsDto;
 
 /**
  * @author senthilvinayahammurugan
@@ -15,5 +15,5 @@ import com.aircraft.maintenance.cards.dto.WorkCardDetailsDto;
 public interface ITaskCardDetailsService {
 
 	
-	WorkCardDetailsDto fetchTaskCardDetails(String correlationId, String workCardNumber);
+	TaskCardDetailsDto fetchTaskCardDetails(String correlationId, String workCardNumber);
 }

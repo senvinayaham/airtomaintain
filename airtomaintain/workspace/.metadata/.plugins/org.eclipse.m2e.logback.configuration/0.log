@@ -6294,3 +6294,18 @@ org.eclipse.core.runtime.CoreException: Could not resolve artifact org.webjars:s
 2024-06-11 09:44:50,471 [Worker-7: Building Workspace] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src/main/resources to target/classes
 2024-06-11 09:44:50,489 [Worker-7: Building Workspace] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src/main/resources to target/classes
 2024-06-11 09:44:50,505 [Worker-7: Building Workspace] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory /Users/senthilvinayahammurugan/eclipse-workspace/microservices/airtomaintain/springcloud/maintenancecards/src/test/resources
+2024-06-18 08:52:29,488 [Worker-22: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src/main/resources to target/classes
+2024-06-18 08:52:29,534 [Worker-22: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src/main/resources to target/classes
+2024-06-18 08:52:29,552 [Worker-22: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory /Users/senthilvinayahammurugan/eclipse-workspace/microservices/airtomaintain/springcloud/maintenancecards/src/test/resources
+2024-06-18 08:53:40,729 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src/main/resources to target/classes
+2024-06-18 08:53:40,877 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src/main/resources to target/classes
+2024-06-18 08:53:40,930 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory /Users/senthilvinayahammurugan/eclipse-workspace/microservices/airtomaintain/springcloud/maintenancecards/src/test/resources
+2024-06-18 08:54:10,812 [Worker-8: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src/main/resources to target/classes
+2024-06-18 08:54:10,842 [Worker-8: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src/main/resources to target/classes
+2024-06-18 08:54:10,848 [Worker-8: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory /Users/senthilvinayahammurugan/eclipse-workspace/microservices/airtomaintain/springcloud/maintenancecards/src/test/resources
+2024-06-18 09:39:03,350 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src/main/resources to target/classes
+2024-06-18 09:39:03,433 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src/main/resources to target/classes
+2024-06-18 09:39:03,444 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory /Users/senthilvinayahammurugan/eclipse-workspace/microservices/airtomaintain/springcloud/maintenancecards/src/test/resources
+2024-06-18 09:39:15,782 [Worker-43: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src/main/resources to target/classes
+2024-06-18 09:39:15,851 [Worker-43: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src/main/resources to target/classes
+2024-06-18 09:39:15,858 [Worker-43: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory /Users/senthilvinayahammurugan/eclipse-workspace/microservices/airtomaintain/springcloud/maintenancecards/src/test/resources

@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aircraft.maintenance.cards.dto.WorkCardDetailsDto;
-import com.aircraft.maintenance.cards.service.IWorkCardDetailsService;
+import com.aircraft.maintenance.cards.dto.TaskCardDetailsDto;
+import com.aircraft.maintenance.cards.service.ITaskCardDetailsService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -29,33 +29,33 @@ import jakarta.validation.constraints.NotEmpty;
  *
  */
 @Tag(
-		name = "CURS REST API for WorkCards Details in Aircraft Maintenance",
-		description = "CURD REST APIs in Aircraft Maintenance CREATE, FETCH, UPDATE AND DELETE WorkCards details"
+		name = "CURS REST API for TaskCards Details in Aircraft Maintenance",
+		description = "CURD REST APIs in Aircraft Maintenance CREATE, FETCH, UPDATE AND DELETE TaskCards details"
 		)
 @RestController
 @RequestMapping(path="/api/v0", produces= {MediaType.APPLICATION_JSON_VALUE})
 @Validated
-public class WorkcardController {
+public class TaskcardController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(WorkcardController.class);
+	private static final Logger logger = LoggerFactory.getLogger(TaskcardController.class);
 	
-	private final IWorkCardDetailsService iWorkCardDetailsService;
+	private final ITaskCardDetailsService iTaskCardDetailsService;
 	
-	public WorkcardController(IWorkCardDetailsService iWorkCardDetailsService) {
+	public TaskcardController(ITaskCardDetailsService iTaskCardDetailsService) {
 		
-		this.iWorkCardDetailsService = iWorkCardDetailsService;
+		this.iTaskCardDetailsService = iTaskCardDetailsService;
 	}
 	
 	@Operation (
 			
-			summary = "FETCH WorkCard Details REST API",
-			description = "REST API to Fetch WorkCard Details to maintain Aircrafts"
+			summary = "FETCH TaskCard Details REST API",
+			description = "REST API to Fetch TaskCard Details to maintain Aircrafts"
 			)
 	@ApiResponses ({
 		@ApiResponse (
 				
 				responseCode = "200",
-				description ="WorkCard Details Request Processed Successfully"			
+				description ="TaskCard Details Request Processed Successfully"			
 				),
 		@ApiResponse (
 				
@@ -63,16 +63,16 @@ public class WorkcardController {
 				description ="An Error Occured"			
 				)
 	})
-	@GetMapping("/fetch_workcarddetails")
-	public ResponseEntity<WorkCardDetailsDto> fetchWorkcardDetails(
+	@GetMapping("/fetch_taskcarddetails")
+	public ResponseEntity<TaskCardDetailsDto> fetchTaskcardDetails(
 			@RequestHeader("aircraftmaintenance-correlation-id") String correlationId,
-			@NotEmpty @RequestParam String workCardNumber){
+			@NotEmpty @RequestParam String taskCardNumber){
 		//logger.debug("aircraftmaintenance-correlation-id generated in RequestTraceFilter : {}", correlationId);
-		logger.debug("Fetch Worcard Details Start");
-		WorkCardDetailsDto workCardDetailsDto = iWorkCardDetailsService.fetchWorkCardDetails(correlationId, workCardNumber);
+		logger.debug("Fetch Taskcard Details Start");
+		TaskCardDetailsDto taskCardDetailsDto = iTaskCardDetailsService.fetchTaskCardDetails(correlationId, taskCardNumber);
 		logger.debug("Fetch Worcard Details End");
 		return ResponseEntity.status(HttpStatus.OK)
-				.body(workCardDetailsDto);
+				.body(taskCardDetailsDto);
 	}
 	
 }
